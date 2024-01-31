@@ -16,57 +16,56 @@ let display = Array.from(btns).find(btn => btn.textContent === "#");
 
 display = display.children[0];
 
+const MAX_LENGTH = 13;
 
-display.textContent = "0";
-let a = 0;
-let opClicked = true;
-let operator = "+";
+let a;
+let opClicked;
+let operator;
+
+reset("0");
+cancelBtn.onclick = reset.bind(null, "0");
 
 numsBtns.forEach(btn => btn.onclick = () => {
   if(display.textContent === "0" || opClicked) {
     display.textContent = "";
   }
+
   let num = btn.textContent;
-  display.textContent += num;
   opClicked = false;
+
+  if(display.textContent.length < MAX_LENGTH) {
+    display.textContent += num;
+  }
 });
 
-cancelBtn.onclick = () => {
-  display.textContent = "0";
-}
-
-
 operatorBtns.forEach(btn => btn.onclick = () => {
-  opClicked = true;
-  let b = +display.textContent;
-
-  switch (operator) {
-    case "+":
-      display.textContent = a + b;
-      a += b;
-      break;
-    case "-":
-      display.textContent = a - b;
-      a -= b;
-      break;
-    case "*":
-      display.textContent = a * b;
-      a *= b;
-      break;
-    case "/":
-      display.textContent = a / b;
-      a /= b;
-      break;
-    default:
-      break;
+  if(opClicked) {
+    operator = btn.textContent;
+    return;
   }
+  
+  calculate();
 
   operator = btn.textContent;
 });
 
 equalBtn.onclick = () => {
+  calculate();
+}
+
+
+function reset(message) {
+  display.textContent = message;
+
+  a = 0;
+  opClicked = true;
+  operator = "+";
+}
+
+function calculate() {
   opClicked = true;
   let b = +display.textContent;
+  
   switch (operator) {
     case "+":
       display.textContent = a + b;
@@ -76,26 +75,38 @@ equalBtn.onclick = () => {
       display.textContent = a - b;
       a -= b;
       break;
-    case "*":
+    case "x":
       display.textContent = a * b;
       a *= b;
       break;
     case "/":
+      if(b == 0) {
+        reset("Error");
+        return;
+      }
       display.textContent = a / b;
       a /= b;
       break;
-    default:
-      break;
+  }
+  display.textContent = limitNumber(display.textContent);
+}
+
+function limitNumber(num) {
+  if(num.length <= MAX_LENGTH) {
+    return num;
+  }
+  let intLen = num.indexOf('.');
+  let realLen = num.length - intLen - 1;
+  if(intLen === -1) {
+    intLen = num.length;
+    realLen = 0;
+  }
+
+  if((intLen > MAX_LENGTH - 2 && realLen > 0) || intLen > MAX_LENGTH && realLen == 0) {
+    reset("Num is too big!");
+    return "Num is too big!";
+  }
+  else {
+    return (+num).toFixed(MAX_LENGTH - intLen - 1);
   }
 }
-
-cancelBtn.onclick = () => {
-  display.textContent = "0";
-  a = 0;
-  opClicked = true;
-  operator = "+";
-}
-
-/*function calc(a, operator, b) {
-
-}*/
