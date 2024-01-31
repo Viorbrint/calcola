@@ -97,10 +97,6 @@ button {
   background-color: #E7E7E7;
 }
 
-#display:hover {
-  background-color: #F6F6F6;
-}
-
 #display-text {
   margin: auto;
   height: 100%;

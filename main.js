@@ -12,9 +12,9 @@ let equalBtn = Array.from(btns).find(btn => btn.textContent === "=");
 
 let cancelBtn = Array.from(btns).find(btn => btn.textContent === "AC");
 
-let display = Array.from(btns).find(btn => btn.textContent === "#");
+let displayBtn = Array.from(btns).find(btn => btn.textContent === "#");
 
-display = display.children[0];
+let display = displayBtn.children[0];
 
 let displayWidth = display.offsetWidth;
 
@@ -56,6 +56,14 @@ equalBtn.onclick = () => {
   calculate();
 }
 
+displayBtn.onclick = () => {
+  if(isFinite(+display.textContent)) {
+    display.textContent = display.textContent.slice(0, display.textContent.length - 1);
+    if(display.textContent == "") {
+      display.textContent = "0";
+    }
+  }
+}
 
 function reset(message) {
   display.textContent = message;
