@@ -16,7 +16,10 @@ let display = Array.from(btns).find(btn => btn.textContent === "#");
 
 display = display.children[0];
 
-const MAX_LENGTH = 13;
+let displayWidth = display.offsetWidth;
+
+const LENGTH_DIVIDE = 14;
+const MAX_LENGTH = Math.floor(displayWidth / LENGTH_DIVIDE);
 
 let a;
 let opClicked;
