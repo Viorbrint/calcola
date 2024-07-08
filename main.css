@@ -17,7 +17,7 @@ button {
 #calc-wrapper {
   height: 100vh;
   width: 100vw;
-  background-color: #D2A5A5;
+  background-color: #d2a5a5;
 
   display: flex;
 
@@ -31,7 +31,7 @@ button {
   aspect-ratio: 0.85;
 
   border-radius: 21px;
-  background-color: #FFF;
+  background-color: #fff;
   box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.25);
 
   display: flex;
@@ -39,8 +39,6 @@ button {
   justify-content: center;
 
   color: #000;
-
-  
 }
 
 #calc-cont-wrapper {
@@ -65,7 +63,7 @@ button {
 }
 
 #hor-line {
-  background-color: #DCDCDC;
+  background-color: #dcdcdc;
   height: 1px;
 }
 
@@ -81,7 +79,7 @@ button {
 
 .calc-btn {
   border-radius: 21px;
-  background: #F6F6F6;
+  background: #f6f6f6;
   box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.25);
 
   color: #000;
@@ -94,7 +92,7 @@ button {
 }
 
 .calc-btn:hover {
-  background-color: #E7E7E7;
+  background-color: #e7e7e7;
 }
 
 #display-text {
